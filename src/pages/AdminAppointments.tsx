@@ -1,0 +1,207 @@
+import { useMemo, useState } from "react";
+import Layout from "@/components/layout/Layout";
+import { HeroContent, HeroItem, StaggerContainer, StaggerItem, FadeUp } from "@/components/ui/scroll-animation";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { CalendarDays, Clock, CheckCircle2, XCircle, Search } from "lucide-react";
+
+type Status = "confirmada" | "pendiente" | "cancelada" | "completada";
+
+interface Appointment {
+  id: string;
+  client: string;
+  email: string;
+  service: string;
+  date: string;
+  time: string;
+  status: Status;
+}
+
+const appointments: Appointment[] = [
+  { id: "CIT-1042", client: "María Fernández", email: "maria@estudio.co", service: "Sesión de descubrimiento", date: "2026-08-04", time: "09:30", status: "confirmada" },
+  { id: "CIT-1041", client: "Andrés Rojas", email: "andres@nova.io", service: "Revisión de marca", date: "2026-08-04", time: "11:00", status: "pendiente" },
+  { id: "CIT-1040", client: "Lucía Herrera", email: "lucia@atelier.mx", service: "Consultoría web", date: "2026-08-05", time: "14:15", status: "confirmada" },
+  { id: "CIT-1039", client: "Tomás Vidal", email: "tomas@vidal.cl", service: "Sesión de descubrimiento", date: "2026-08-06", time: "16:00", status: "cancelada" },
+  { id: "CIT-1038", client: "Camila Duarte", email: "camila@duarte.pe", service: "Estrategia de contenido", date: "2026-08-07", time: "10:00", status: "pendiente" },
+  { id: "CIT-1037", client: "Javier Peña", email: "javier@penastudio.es", service: "Revisión de marca", date: "2026-08-01", time: "12:30", status: "completada" },
+  { id: "CIT-1036", client: "Sofía Márquez", email: "sofia@marquez.ar", service: "Consultoría web", date: "2026-07-30", time: "15:45", status: "completada" },
+];
+
+const statusStyles: Record<Status, string> = {
+  confirmada: "bg-foreground text-background",
+  pendiente: "bg-secondary text-secondary-foreground",
+  cancelada: "bg-destructive/10 text-destructive",
+  completada: "bg-muted text-muted-foreground",
+};
+
+const filters: Array<Status | "todas"> = ["todas", "pendiente", "confirmada", "completada", "cancelada"];
+
+const formatDate = (value: string) =>
+  new Date(`${value}T00:00:00`).toLocaleDateString("es-ES", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
+const AdminAppointments = () => {
+  const [filter, setFilter] = useState<Status | "todas">("todas");
+  const [query, setQuery] = useState("");
+
+  const rows = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return appointments.filter((a) => {
+      const matchesStatus = filter === "todas" || a.status === filter;
+      const matchesQuery =
+        !q ||
+        a.client.toLowerCase().includes(q) ||
+        a.email.toLowerCase().includes(q) ||
+        a.service.toLowerCase().includes(q) ||
+        a.id.toLowerCase().includes(q);
+      return matchesStatus && matchesQuery;
+    });
+  }, [filter, query]);
+
+  const stats = [
+    { label: "Citas totales", value: appointments.length, icon: CalendarDays },
+    { label: "Pendientes", value: appointments.filter((a) => a.status === "pendiente").length, icon: Clock },
+    { label: "Confirmadas", value: appointments.filter((a) => a.status === "confirmada").length, icon: CheckCircle2 },
+    { label: "Canceladas", value: appointments.filter((a) => a.status === "cancelada").length, icon: XCircle },
+  ];
+
+  return (
+    <Layout>
+      <section className="py-20 md:py-28">
+        <div className="container">
+          <HeroContent className="max-w-2xl">
+            <HeroItem>
+              <p className="text-sm font-medium tracking-[0.2em] uppercase text-muted-foreground mb-4">
+                Panel interno
+              </p>
+            </HeroItem>
+            <HeroItem>
+              <h1 className="text-4xl md:text-6xl tracking-tight font-normal">
+                Administración de citas
+              </h1>
+            </HeroItem>
+            <HeroItem>
+              <p className="mt-6 text-lg text-muted-foreground">
+                Consulta, filtra y gestiona las sesiones agendadas por tus clientes en un solo lugar.
+              </p>
+            </HeroItem>
+          </HeroContent>
+        </div>
+      </section>
+
+      <section className="pb-12">
+        <div className="container">
+          <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {stats.map((stat) => (
+              <StaggerItem key={stat.label}>
+                <div className="rounded-3xl border border-border bg-card/80 backdrop-blur-sm p-6 h-full">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm text-muted-foreground">{stat.label}</p>
+                    <stat.icon className="w-4 h-4 text-muted-foreground" />
+                  </div>
+                  <p className="mt-4 text-4xl font-normal tracking-tight">{stat.value}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      <section className="pb-24 md:pb-32">
+        <div className="container">
+          <FadeUp>
+            <div className="rounded-3xl border border-border bg-card/80 backdrop-blur-sm overflow-hidden">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 border-b border-border">
+                <div className="flex flex-wrap gap-2">
+                  {filters.map((f) => (
+                    <Button
+                      key={f}
+                      variant={filter === f ? "default" : "outline"}
+                      size="sm"
+                      className="rounded-full capitalize"
+                      onClick={() => setFilter(f)}
+                    >
+                      {f}
+                    </Button>
+                  ))}
+                </div>
+                <div className="relative w-full lg:w-72">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Buscar cliente, servicio o ID"
+                    className="pl-9 rounded-full"
+                  />
+                </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="uppercase text-xs tracking-[0.15em]">Cliente</TableHead>
+                      <TableHead className="uppercase text-xs tracking-[0.15em]">Servicio</TableHead>
+                      <TableHead className="uppercase text-xs tracking-[0.15em]">Fecha</TableHead>
+                      <TableHead className="uppercase text-xs tracking-[0.15em]">Hora</TableHead>
+                      <TableHead className="uppercase text-xs tracking-[0.15em]">Estado</TableHead>
+                      <TableHead className="uppercase text-xs tracking-[0.15em] text-right">Acciones</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {rows.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={6} className="text-center py-16 text-muted-foreground">
+                          No hay citas que coincidan con tu búsqueda.
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      rows.map((a) => (
+                        <TableRow key={a.id}>
+                          <TableCell>
+                            <p className="font-medium">{a.client}</p>
+                            <p className="text-sm text-muted-foreground">{a.email}</p>
+                          </TableCell>
+                          <TableCell className="text-muted-foreground">{a.service}</TableCell>
+                          <TableCell className="whitespace-nowrap">{formatDate(a.date)}</TableCell>
+                          <TableCell className="whitespace-nowrap">{a.time}</TableCell>
+                          <TableCell>
+                            <Badge className={`rounded-full border-0 capitalize font-normal ${statusStyles[a.status]}`}>
+                              {a.status}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-right whitespace-nowrap">
+                            <Button variant="ghost" size="sm" className="rounded-full">
+                              Ver
+                            </Button>
+                            <Button variant="ghost" size="sm" className="rounded-full text-destructive hover:text-destructive">
+                              Cancelar
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
+          </FadeUp>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default AdminAppointments;
