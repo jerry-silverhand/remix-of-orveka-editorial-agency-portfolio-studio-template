@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/sidebar";
 
 export const adminNavItems = [
-  { title: "General", url: "/admin/citas", icon: LayoutGrid },
+  { title: "Mis Citas", url: "/admin/citas", icon: LayoutGrid },
   { title: "Servicios", url: "/admin/servicios", icon: Sparkles },
   { title: "Imágenes", url: "/admin/imagenes", icon: ImageIcon },
   { title: "Horario", url: "/admin/horario", icon: CalendarClock },
