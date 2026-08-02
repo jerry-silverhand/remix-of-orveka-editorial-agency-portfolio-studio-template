@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import Layout from "@/components/layout/Layout";
+import AdminLayout from "@/components/admin/AdminLayout";
 import { HeroContent, HeroItem, StaggerContainer, StaggerItem, FadeUp } from "@/components/ui/scroll-animation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -78,8 +78,8 @@ const AdminAppointments = () => {
   ];
 
   return (
-    <Layout>
-      <section className="py-20 md:py-28">
+    <AdminLayout title="General">
+      <section className="py-12 md:py-16">
         <div className="container">
           <HeroContent className="max-w-2xl">
             <HeroItem>
@@ -200,7 +200,7 @@ const AdminAppointments = () => {
           </FadeUp>
         </div>
       </section>
-    </Layout>
+    </AdminLayout>
   );
 };
 
