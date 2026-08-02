@@ -43,8 +43,8 @@ export function useTypingAnimation({
     }
 
     let currentIndex = 0;
-    let typingTimeout: NodeJS.Timeout;
-    let cursorTimeout: NodeJS.Timeout;
+    let typingTimeout: ReturnType<typeof setTimeout>;
+    let cursorTimeout: ReturnType<typeof setInterval>;
 
     // Start delay
     const startTimeout = setTimeout(() => {
