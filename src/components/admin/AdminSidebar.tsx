@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   LayoutGrid,
   Sparkles,
@@ -33,6 +33,7 @@ export const adminNavItems = [
 const AdminSidebar = () => {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
+  const { pathname } = useLocation();
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border">
@@ -66,7 +67,7 @@ const AdminSidebar = () => {
             <SidebarMenu>
               {adminNavItems.map((item) => (
                 <SidebarMenuItem key={item.url}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
+                  <SidebarMenuButton asChild tooltip={item.title} isActive={pathname === item.url}>
                     <NavLink to={item.url} end className="flex items-center gap-3">
                       <item.icon className="h-4 w-4 shrink-0" />
                       {!collapsed && <span>{item.title}</span>}
