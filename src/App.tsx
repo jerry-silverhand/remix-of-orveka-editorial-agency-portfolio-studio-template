@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import Contact from "./pages/Contact";
 import AdminAppointments from "./pages/AdminAppointments";
+import AdminSection from "./pages/AdminSection";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,11 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin/citas" element={<AdminAppointments />} />
+          <Route path="/admin/servicios" element={<AdminSection />} />
+          <Route path="/admin/imagenes" element={<AdminSection />} />
+          <Route path="/admin/horario" element={<AdminSection />} />
+          <Route path="/admin/equipo" element={<AdminSection />} />
+          <Route path="/admin/accesos" element={<AdminSection />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
