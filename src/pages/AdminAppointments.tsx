@@ -29,13 +29,13 @@ interface Appointment {
 }
 
 const appointments: Appointment[] = [
-  { id: "CIT-1042", client: "María Fernández", email: "maria@estudio.co", service: "Sesión de descubrimiento", date: "2026-08-04", time: "09:30", status: "confirmada" },
-  { id: "CIT-1041", client: "Andrés Rojas", email: "andres@nova.io", service: "Revisión de marca", date: "2026-08-04", time: "11:00", status: "pendiente" },
-  { id: "CIT-1040", client: "Lucía Herrera", email: "lucia@atelier.mx", service: "Consultoría web", date: "2026-08-05", time: "14:15", status: "confirmada" },
-  { id: "CIT-1039", client: "Tomás Vidal", email: "tomas@vidal.cl", service: "Sesión de descubrimiento", date: "2026-08-06", time: "16:00", status: "cancelada" },
-  { id: "CIT-1038", client: "Camila Duarte", email: "camila@duarte.pe", service: "Estrategia de contenido", date: "2026-08-07", time: "10:00", status: "pendiente" },
-  { id: "CIT-1037", client: "Javier Peña", email: "javier@penastudio.es", service: "Revisión de marca", date: "2026-08-01", time: "12:30", status: "completada" },
-  { id: "CIT-1036", client: "Sofía Márquez", email: "sofia@marquez.ar", service: "Consultoría web", date: "2026-07-30", time: "15:45", status: "completada" },
+  { id: "CIT-1042", client: "María Fernández", email: "maria@estudio.co", phone: "+56 9 1234 5678", service: "Sesión de descubrimiento", price: 120, date: "2026-08-04", time: "09:30", status: "confirmada" },
+  { id: "CIT-1041", client: "Andrés Rojas", email: "andres@nova.io", phone: "+56 9 2345 6789", service: "Revisión de marca", price: 95, date: "2026-08-04", time: "11:00", status: "pendiente" },
+  { id: "CIT-1040", client: "Lucía Herrera", email: "lucia@atelier.mx", phone: "+52 55 1234 5678", service: "Consultoría web", price: 150, date: "2026-08-05", time: "14:15", status: "confirmada" },
+  { id: "CIT-1039", client: "Tomás Vidal", email: "tomas@vidal.cl", phone: "+56 9 3456 7890", service: "Sesión de descubrimiento", price: 120, date: "2026-08-06", time: "16:00", status: "cancelada" },
+  { id: "CIT-1038", client: "Camila Duarte", email: "camila@duarte.pe", phone: "+51 999 123 456", service: "Estrategia de contenido", price: 80, date: "2026-08-07", time: "10:00", status: "pendiente" },
+  { id: "CIT-1037", client: "Javier Peña", email: "javier@penastudio.es", phone: "+34 612 34 56 78", service: "Revisión de marca", price: 95, date: "2026-08-01", time: "12:30", status: "completada" },
+  { id: "CIT-1036", client: "Sofía Márquez", email: "sofia@marquez.ar", phone: "+54 11 1234 5678", service: "Consultoría web", price: 150, date: "2026-07-30", time: "15:45", status: "completada" },
 ];
 
 const statusStyles: Record<Status, string> = {
