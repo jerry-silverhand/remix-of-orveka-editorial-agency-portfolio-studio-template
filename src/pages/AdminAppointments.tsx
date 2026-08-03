@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CalendarDays, Clock, CheckCircle2, XCircle, Search } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, XCircle, Search, Eye } from "lucide-react";
 
 type Status = "confirmada" | "pendiente" | "cancelada" | "completada";
 
@@ -37,8 +37,8 @@ const appointments: Appointment[] = [
 ];
 
 const statusStyles: Record<Status, string> = {
-  confirmada: "bg-foreground text-background",
-  pendiente: "bg-secondary text-secondary-foreground",
+  confirmada: "bg-green-500/20 text-green-700 ring-1 ring-green-500/30",
+  pendiente: "bg-yellow-500/20 text-yellow-700 ring-1 ring-yellow-500/30",
   cancelada: "bg-destructive/10 text-destructive",
   completada: "bg-muted text-muted-foreground",
 };
@@ -183,7 +183,8 @@ const AdminAppointments = () => {
                             </Badge>
                           </TableCell>
                           <TableCell className="text-right whitespace-nowrap">
-                            <Button variant="ghost" size="sm" className="rounded-full">
+                            <Button variant="ghost" size="sm" className="rounded-full gap-1.5">
+                              <Eye className="h-3.5 w-3.5" />
                               Ver
                             </Button>
                             <Button variant="ghost" size="sm" className="rounded-full text-destructive hover:text-destructive">
