@@ -167,7 +167,7 @@ const AdminAppointments = () => {
                   <TableBody>
                     {rows.length === 0 ? (
                       <TableRow>
-                        <TableCell colSpan={6} className="text-center py-16 text-muted-foreground">
+                        <TableCell colSpan={7} className="text-center py-16 text-muted-foreground">
                           No hay citas que coincidan con tu búsqueda.
                         </TableCell>
                       </TableRow>
@@ -178,7 +178,11 @@ const AdminAppointments = () => {
                             <p className="font-medium">{a.client}</p>
                             <p className="text-sm text-muted-foreground">{a.email}</p>
                           </TableCell>
-                          <TableCell className="text-muted-foreground">{a.service}</TableCell>
+                          <TableCell className="whitespace-nowrap text-muted-foreground">{a.phone}</TableCell>
+                          <TableCell>
+                            <p className="text-muted-foreground">{a.service}</p>
+                            <p className="text-sm font-medium">${a.price.toFixed(2)} USD</p>
+                          </TableCell>
                           <TableCell className="whitespace-nowrap">{formatDate(a.date)}</TableCell>
                           <TableCell className="whitespace-nowrap">{a.time}</TableCell>
                           <TableCell>
