@@ -73,6 +73,15 @@ const AdminAppointments = () => {
     });
   }, [filter, query]);
 
+  const nextAppointment = useMemo(() => {
+    const now = new Date().getTime();
+    const upcoming = [...appointments]
+      .map((a) => ({ ...a, ts: new Date(`${a.date}T${a.time}`).getTime() }))
+      .filter((a) => a.ts >= now)
+      .sort((a, b) => a.ts - b.ts);
+    return upcoming[0] || appointments[0];
+  }, []);
+
   const stats = [
     { label: "Citas totales", value: appointments.length, icon: CalendarDays },
     { label: "Pendientes", value: appointments.filter((a) => a.status === "pendiente").length, icon: Clock },
@@ -104,6 +113,25 @@ const AdminAppointments = () => {
               </p>
             </HeroItem>
           </HeroContent>
+        </div>
+      </section>
+
+      <section className="pb-12">
+        <div className="container">
+          <div className="rounded-3xl border border-border bg-card/80 backdrop-blur-sm p-6 md:p-8 max-w-2xl">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-muted-foreground mb-4">
+              siguiente cita en 16 min
+            </p>
+            <p className="text-3xl md:text-4xl font-normal tracking-tight text-foreground">
+              {nextAppointment.service}
+            </p>
+            <p className="mt-3 text-lg text-muted-foreground">
+              {nextAppointment.client}
+            </p>
+            <p className="mt-1 text-base text-muted-foreground">
+              {nextAppointment.time} — {formatDate(nextAppointment.date)}
+            </p>
+          </div>
         </div>
       </section>
 
