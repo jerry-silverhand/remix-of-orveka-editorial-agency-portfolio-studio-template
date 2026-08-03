@@ -94,6 +94,9 @@ const AdminAppointments = () => {
               <h1 className="text-4xl md:text-6xl tracking-tight font-normal">
                 Administración de citas
               </h1>
+              <p className="mt-3 text-base text-muted-foreground">
+                {new Date().toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" })}
+              </p>
             </HeroItem>
             <HeroItem>
               <p className="mt-6 text-lg text-muted-foreground">
