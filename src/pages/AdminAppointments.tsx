@@ -73,6 +73,15 @@ const AdminAppointments = () => {
     });
   }, [filter, query]);
 
+  const nextAppointment = useMemo(() => {
+    const now = new Date().getTime();
+    const upcoming = [...appointments]
+      .map((a) => ({ ...a, ts: new Date(`${a.date}T${a.time}`).getTime() }))
+      .filter((a) => a.ts >= now)
+      .sort((a, b) => a.ts - b.ts);
+    return upcoming[0] || appointments[0];
+  }, []);
+
   const stats = [
     { label: "Citas totales", value: appointments.length, icon: CalendarDays },
     { label: "Pendientes", value: appointments.filter((a) => a.status === "pendiente").length, icon: Clock },
