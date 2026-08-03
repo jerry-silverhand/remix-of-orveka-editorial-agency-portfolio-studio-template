@@ -118,6 +118,25 @@ const AdminAppointments = () => {
 
       <section className="pb-12">
         <div className="container">
+          <div className="rounded-3xl border border-border bg-card/80 backdrop-blur-sm p-6 md:p-8 max-w-2xl">
+            <p className="text-sm font-medium tracking-[0.2em] uppercase text-muted-foreground mb-4">
+              siguiente cita en 16 min
+            </p>
+            <p className="text-3xl md:text-4xl font-normal tracking-tight text-foreground">
+              {nextAppointment.service}
+            </p>
+            <p className="mt-3 text-lg text-muted-foreground">
+              {nextAppointment.client}
+            </p>
+            <p className="mt-1 text-base text-muted-foreground">
+              {nextAppointment.time} — {formatDate(nextAppointment.date)}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-12">
+        <div className="container">
           <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {stats.map((stat) => (
               <StaggerItem key={stat.label}>
