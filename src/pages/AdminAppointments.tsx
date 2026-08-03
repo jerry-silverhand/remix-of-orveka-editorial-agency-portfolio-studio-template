@@ -20,7 +20,9 @@ interface Appointment {
   id: string;
   client: string;
   email: string;
+  phone: string;
   service: string;
+  price: number;
   date: string;
   time: string;
   status: Status;
