@@ -156,6 +156,7 @@ const AdminAppointments = () => {
                   <TableHeader>
                     <TableRow>
                       <TableHead className="uppercase text-xs tracking-[0.15em]">Cliente</TableHead>
+                      <TableHead className="uppercase text-xs tracking-[0.15em]">Teléfono</TableHead>
                       <TableHead className="uppercase text-xs tracking-[0.15em]">Servicio</TableHead>
                       <TableHead className="uppercase text-xs tracking-[0.15em]">Fecha</TableHead>
                       <TableHead className="uppercase text-xs tracking-[0.15em]">Hora</TableHead>
