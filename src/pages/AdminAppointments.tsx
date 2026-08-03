@@ -37,8 +37,8 @@ const appointments: Appointment[] = [
 ];
 
 const statusStyles: Record<Status, string> = {
-  confirmada: "bg-foreground text-background",
-  pendiente: "bg-secondary text-secondary-foreground",
+  confirmada: "bg-green-500/20 text-green-700 ring-1 ring-green-500/30",
+  pendiente: "bg-yellow-500/20 text-yellow-700 ring-1 ring-yellow-500/30",
   cancelada: "bg-destructive/10 text-destructive",
   completada: "bg-muted text-muted-foreground",
 };
