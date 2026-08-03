@@ -66,6 +66,7 @@ const AdminAppointments = () => {
         !q ||
         a.client.toLowerCase().includes(q) ||
         a.email.toLowerCase().includes(q) ||
+        a.phone.toLowerCase().includes(q) ||
         a.service.toLowerCase().includes(q) ||
         a.id.toLowerCase().includes(q);
       return matchesStatus && matchesQuery;
