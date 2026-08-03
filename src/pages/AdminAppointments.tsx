@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CalendarDays, Clock, CheckCircle2, XCircle, Search } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, XCircle, Search, Eye } from "lucide-react";
 
 type Status = "confirmada" | "pendiente" | "cancelada" | "completada";
 
