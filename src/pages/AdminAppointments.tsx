@@ -187,7 +187,7 @@ const AdminAppointments = () => {
                               <Eye className="h-3.5 w-3.5" />
                               Ver
                             </Button>
-                            <Button variant="ghost" size="sm" className="rounded-full text-destructive hover:text-destructive">
+                            <Button variant="ghost" size="sm" className="rounded-full text-destructive hover:bg-red-600 hover:text-white">
                               Cancelar
                             </Button>
                           </TableCell>
