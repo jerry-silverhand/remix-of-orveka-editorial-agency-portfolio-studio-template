@@ -181,7 +181,7 @@ const AdminAppointments = () => {
                           <TableCell className="whitespace-nowrap text-muted-foreground">{a.phone}</TableCell>
                           <TableCell>
                             <p className="text-muted-foreground">{a.service}</p>
-                            <p className="text-sm font-medium">${a.price.toFixed(2)} USD</p>
+                            <p className="text-sm font-medium text-muted-foreground">${a.price.toFixed(2)} USD</p>
                           </TableCell>
                           <TableCell className="whitespace-nowrap">{formatDate(a.date)}</TableCell>
                           <TableCell className="whitespace-nowrap">{a.time}</TableCell>
